@@ -1,10 +1,16 @@
+import Body from "./components/Body";
+import { BrowserRouter, Route, Routes } from "react-router";
 function App() {
-
   return (
-    <>
-      <h1>Hello World</h1>
-    </>
-  )
+    <BrowserRouter basename="/">
+      <Routes>
+        <Route path="" element={<Body />}>
+          <Route path="login" element={<>Login</>} />
+          <Route path="connection" element={<>Connection</>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
