@@ -115,7 +115,16 @@ const EditProfile = () => {
           </div>
         </div>
       </div>
-      <UserCard user={user} />
+      <UserCard
+        user={{
+          firstName,
+          lastName,
+          photoUrl: user.photoUrl,
+          age,
+          gender,
+          about,
+        }}
+      />
       {showToast &&
         (error ? (
           <div className="toast toast-top toast-center">

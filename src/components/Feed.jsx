@@ -10,15 +10,25 @@ const Feed = () => {
   const feed = useSelector((store) => store.feed);
   useEffect(() => {
     const fetchFeed = async () => {
-      const feed = await axios.get(BASE_URL + "/user/feed", {
-        withCredentials: true,
-      });
-      dispatch(addFeed(feed.data.data));
+      try {
+        const feed = await axios.get(BASE_URL + "/user/feed", {
+          withCredentials: true,
+        });
+        dispatch(addFeed(feed.data.data));
+      } catch (err) {}
     };
     fetchFeed();
   }, []);
 
+  if (!feed) {
+    return <div className="flex justify-center text-3xl">Loading...</div>;
+  }
 
+  if (feed.length === 0) {
+    return (
+      <div className="flex justify-center text-3xl">No New feed found!!!</div>
+    );
+  }
   return (
     feed && (
       <div className="h-[80vh]">
