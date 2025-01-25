@@ -5,13 +5,12 @@ import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 import { addUser } from "../utils/userSlice";
 
-const EditProfile = () => {
-  const user = useSelector((store) => store.user);
-  const [firstName, setFirstName] = useState(user.firstName || "");
-  const [lastName, setLastName] = useState(user.lastName || "");
-  const [age, setAge] = useState(user.age || "");
-  const [about, setAbout] = useState(user.about || "");
-  const [gender, setGender] = useState(user.gender || "");
+const EditProfile = ({ user }) => {
+  const [firstName, setFirstName] = useState(user?.firstName ?? "");
+  const [lastName, setLastName] = useState(user?.lastName || "");
+  const [age, setAge] = useState(user?.age || "");
+  const [about, setAbout] = useState(user?.about || "");
+  const [gender, setGender] = useState(user?.gender || "");
   const [error, setError] = useState("");
   const [showToast, setShowToast] = useState(false);
   const dispatch = useDispatch();
@@ -119,7 +118,7 @@ const EditProfile = () => {
         user={{
           firstName,
           lastName,
-          photoUrl: user.photoUrl,
+          photoUrl: user?.photoUrl ?? "",
           age,
           gender,
           about,

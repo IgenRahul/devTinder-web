@@ -28,7 +28,7 @@ const Body = () => {
     if (!user) {
       fetchUser();
     }
-  }, []);
+  }, [user]);
 
   return (
     <>
